@@ -1,17 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import Habit from './Habit';
+import ReactDOM from 'react-dom';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello world! (from frontend)
-        </p>
-      </header>
-    </div>
-  );
+
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(<Habit/>);
+  
 }
 
 export default App;

@@ -13,9 +13,9 @@ const app = express();
 app.use(express.json())
 app.use(express.urlencoded({ extended: false}))
 
-app.get("/api/habits", (req, res) => {
-    res.json({ message: "Hello world! (from server)" });
-  });
+//app.get("/api/habits", (req, res) => {                    //<---is this necessary??
+//    res.json({ message: "Hello world! (from server)" });
+//  });
 
 app.use('/api/habits', require('../habitRoutes/getRoute'));
 app.use('/api/habits', require('../habitRoutes/createRoute'));

@@ -15,6 +15,12 @@ app.get("/api", (req, res) => {
     res.json({ message: "Hello world! (from server)" });
   });
 
+app.use('/api/habits', require('../habitRoutes/getRoute'));
+app.use('/api/habits', require('../habitRoutes/createRoute'));
+app.use('/api/habits', require('../habitRoutes/updateRoute'));
+app.use('/api/habits', require('../habitRoutes/deleteRoute'));
+
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });

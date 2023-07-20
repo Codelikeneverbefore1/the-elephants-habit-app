@@ -2,7 +2,9 @@ const express = require("express");
 const dotenv = require('dotenv');
 //const connectDB = require('./config/database')
 const PORT = process.env.PORT || 3001;
-const colors = require('colors')
+//const colors = require('colors')
+const path = require('path')
+dotenv.config()
 
 //connectDB()
 
@@ -15,10 +17,10 @@ app.get("/api/habits", (req, res) => {
     res.json({ message: "Hello world! (from server)" });
   });
 
-app.use('/api/habits', require('../habitRoutes/getRoute'));
-app.use('/api/habits', require('../habitRoutes/createRoute'));
-app.use('/api/habits', require('../habitRoutes/updateRoute'));
-app.use('/api/habits', require('../habitRoutes/deleteRoute'));
+app.use('/api/habits', require(path.join(__dirname,'habitRoutes','getRoute')));
+app.use('/api/habits', require(path.join(__dirname,'habitRoutes','createRoute')));
+app.use('/api/habits', require(path.join(__dirname,'habitRoutes','updateRoute')));
+app.use('/api/habits', require(path.join(__dirname,'habitRoutes','deleteRoute')));
 
 
 app.listen(PORT, () => {

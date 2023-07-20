@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js"
+    "start": "node /Users/Mo/Desktop/TECHLABS PROJECT/the-elephants-habit-app-1/habapp-backend/server/index.js"
   },
   "keywords": [],
   "author": "",

@@ -6,7 +6,7 @@ const Habit = require('../models/habitModel')
 // route GET/api/habits
 // access Private
 const getHabit = asyncHandler(async (req,res) => {
-    const habits = await Habit.find()
+    const habits = await Habit.find()                      
     res.status(200).json(habits)
 })
 
@@ -43,7 +43,7 @@ const updateHabit = asyncHandler(async (req,res) => {
 // route DELETE/api/habits/:id
 // access Private
 const deleteHabit = asyncHandler(async (req,res) => {
-    const habit = await Goal.findById(req.params.id)
+    const habit = await Habit.findById(req.params.id)
     
     if(!habit) {
         res.status(400)

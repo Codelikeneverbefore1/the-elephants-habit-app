@@ -1,9 +1,13 @@
 const mongoose = require('mongoose')
 
 const habitSchema = mongoose.Schema({
-    text: {
+    title: {
         type: String,
-        required: (true, 'Please add text')
+        required: (true, 'Please add title')
+    },
+    desc: {
+        type: String,
+        required: (true, 'Please add desc.')
     }
 },{
     timestamps: true,

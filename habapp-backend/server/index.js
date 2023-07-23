@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json())
 app.use(express.urlencoded({ extended: false}))
 
-app.use('/api/habits', require('../routes/habitRoutes'));1
+app.use('/api/habits', require('../routes/habitRoutes'));
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

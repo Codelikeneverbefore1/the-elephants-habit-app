@@ -14,12 +14,13 @@ const getHabit = asyncHandler(async (req,res) => {
 // route POST/api/habits
 // access Private
 const createHabit = asyncHandler(async (req,res) => {
-    if (!req.body.text) {                                   //if not req body.text, if unticked in postman body
-        res.status(400).json({ message: 'Please add text'}) //res error 400, when unticked, gives message
+    if (!req.body.title) {                                   //if not req body.text, if unticked in postman body
+        res.status(400).json({ message: 'Please add title'}) //res error 400, when unticked, gives message
         throw new Error('Please add text field')
     }
     const habit = await Habit.create({
-        text: req.body.text
+        title: req.body.title,
+        desc: req.body.desc
 })
     res.status(200).json(habit)
 })

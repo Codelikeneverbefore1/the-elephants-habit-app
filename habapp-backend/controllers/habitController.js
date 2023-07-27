@@ -2,11 +2,14 @@
 
 const asyncHandler = require('express-async-handler')
 const Habit = require('../models/habitModel')
+const User = require('../models/userModel')
+
 // desc. Get habits
 // route GET/api/habits
 // access Private
 const getHabit = asyncHandler(async (req,res) => {
     const habits = await Habit.find()                      
+    
     res.status(200).json(habits)
 })
 
@@ -34,6 +37,19 @@ const updateHabit = asyncHandler(async (req,res) => {
         res.status(400)
         throw new Error('Habit not found')
     }
+
+    const user = await User.findById(req.user.id)
+    //check for user
+    if(!user){
+        res.status(401)
+        throw new Error ('User not found')
+    }
+
+    if(goal.user.toString() !== user.id) { //trun goal id (user) to string, !== eq to user.id
+        res.status(401)
+        throw new Error('User not authorized')
+    }
+
     const updatedHabit = await Habit.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
     })
@@ -50,6 +66,19 @@ const deleteHabit = asyncHandler(async (req,res) => {
         res.status(400)
         throw new Error('Habit not found')
     }
+
+    const user = await User.findById(req.user.id)
+    //check for user
+    if(!user){
+        res.status(401)
+        throw new Error ('User not found')
+    }
+
+    if(goal.user.toString() !== user.id) { //trun goal id (user) to string, !== eq to user.id
+        res.status(401)
+        throw new Error('User not authorized')
+    }
+    
     //console.log(habit)
     const habit2 =     await Habit.deleteOne({ _id: req.params.id })
     console.log(habit2)

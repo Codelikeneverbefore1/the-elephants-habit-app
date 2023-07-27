@@ -1,9 +1,10 @@
 const mongoose = require('mongoose')
 
 const habitSchema = mongoose.Schema({
-    title: {
-        type: String,
-        required: (true, 'Please add title')
+    user:{
+        type: mongoose.Schema.Types.ObjectId,  // resource created by _id: field is ObjectId
+        required: true, 
+        ref: 'User'
     },
     desc: {
         type: String,

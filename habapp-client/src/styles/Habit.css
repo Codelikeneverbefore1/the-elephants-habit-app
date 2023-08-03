@@ -1,0 +1,37 @@
+
+
+/* Set up a grid container */
+.container {
+    display: grid;
+    gap: 10px; 
+    grid-template-columns: 1fr; 
+    padding-left: 30px;
+  }
+  
+ 
+  label {
+    font-weight: bold;
+  }
+  
+  /* Style the input fields */
+  input[type="text"],
+  input[type="date"] {
+    padding: 8px;
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .buttonStyle {
+    margin-left: auto; 
+    padding: 6px 12px; 
+    font-size: 14px; 
+    background-color: #727272; 
+    color: #fff; 
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 20px;
+    
+    
+  }
+  

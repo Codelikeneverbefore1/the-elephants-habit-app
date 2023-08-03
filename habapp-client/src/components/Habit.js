@@ -57,10 +57,11 @@ function Habit() {
         type="date"
         value={deadline}
         onChange={(e) => {
-          const date = new Date(e.target.value);
-          const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-          setDeadline(formattedDate);
-        }}
+          const date = new Date(e.target.value).toISOString().slice(0, 10);
+          //const formattedDate = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`;
+          setDeadline(date);
+        }
+      }
         required 
       />
 

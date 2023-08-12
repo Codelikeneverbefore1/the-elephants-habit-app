@@ -1,6 +1,6 @@
 
 
-/* Set up a grid container */
+
 .container {
     display: grid;
     gap: 10px; 
@@ -13,7 +13,7 @@
     font-weight: bold;
   }
   
-  /* Style the input fields */
+ 
   input[type="text"],
   input[type="date"] {
     padding: 8px;
@@ -34,4 +34,43 @@
     
     
   }
-  
+
+
+ul {
+  list-style: none;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+
+ul li {
+  background-color: #9d9d9d;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  position: relative; 
+}
+
+
+.habit-details {
+  display: flex;
+  flex-direction: column; 
+}
+
+
+.habit-detail {
+  margin-bottom: 5px; 
+}
+
+
+.deleteButton {
+  background-color: #e57373;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}

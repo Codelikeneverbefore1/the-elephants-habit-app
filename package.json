@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "react-dialog-confirm": "^1.0.3"
+  }
+}

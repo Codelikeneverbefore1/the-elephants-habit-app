@@ -31,6 +31,11 @@ function Habit() {
     setDeadline('');
   };
 
+  const deleteHabit = (habitId) => {
+    const updatedList = list.filter((habit) => habit.id !== habitId);
+    setList(updatedList);
+  };
+
   return (
     <div>
       <h2 className="container">Create a Habit</h2>
@@ -71,7 +76,16 @@ function Habit() {
       <ul>
         {list.map((habit) => (
           <li key={habit.id}>
-            <strong>{habit.habit}</strong> - {habit.goal} - By {habit.deadline}
+          <div className="habit-details">
+          <div className="habit-detail">
+            <strong>{habit.habit}</strong>
+          </div>
+          <div className="habit-detail">{habit.goal}</div>
+        <div className="habit-detail">By {habit.deadline}</div>
+      </div>
+            <button className="deleteButton" onClick={() => deleteHabit(habit.id)}>
+              Delete
+            </button>
           </li>
         ))}
       </ul>

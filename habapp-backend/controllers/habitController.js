@@ -74,16 +74,12 @@ const deleteHabit = asyncHandler(async (req,res) => {
         throw new Error ('User not found')
     }
 
-    if(goal.user.toString() !== user.id) { //trun goal id (user) to string, !== eq to user.id
+    if(goal.user.toString() !== user.id) { //turn goal id (user) to string, !== eq to user.id
         res.status(401)
         throw new Error('User not authorized')
     }
     
-    //console.log(habit)
     const habit2 =     await Habit.deleteOne({ _id: req.params.id })
-    console.log(habit2)
-
-    //await Habit.deleteOne({ id: req.params.id })
     
     res.status(200).json({ id: req.params.id })
 })

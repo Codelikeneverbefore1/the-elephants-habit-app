@@ -24,4 +24,3 @@ app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
-//please leave as it is. it's all tested on postman already. if anything needs to be adapted for frontend let me know.

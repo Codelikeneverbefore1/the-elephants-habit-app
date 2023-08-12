@@ -1,5 +1,3 @@
-// when using mongoose in each function to interact with database will give back a promise
-
 const asyncHandler = require('express-async-handler')
 const Habit = require('../models/habitModel')
 const User = require('../models/userModel')
@@ -17,8 +15,8 @@ const getHabit = asyncHandler(async (req,res) => {
 // route POST/api/habits
 // access Private
 const createHabit = asyncHandler(async (req,res) => {
-    if (!req.body.title) {                                   //if not req body.text, if unticked in postman body
-        res.status(400).json({ message: 'Please add title'}) //res error 400, when unticked, gives message
+    if (!req.body.title) {                                   
+        res.status(400).json({ message: 'Please add title'})
         throw new Error('Please add text field')
     }
     const habit = await Habit.create({
@@ -39,13 +37,13 @@ const updateHabit = asyncHandler(async (req,res) => {
     }
 
     const user = await User.findById(req.user.id)
-    //check for user
+   
     if(!user){
         res.status(401)
         throw new Error ('User not found')
     }
 
-    if(goal.user.toString() !== user.id) { //trun goal id (user) to string, !== eq to user.id
+    if(goal.user.toString() !== user.id) { 
         res.status(401)
         throw new Error('User not authorized')
     }
@@ -74,7 +72,7 @@ const deleteHabit = asyncHandler(async (req,res) => {
         throw new Error ('User not found')
     }
 
-    if(goal.user.toString() !== user.id) { //turn goal id (user) to string, !== eq to user.id
+    if(goal.user.toString() !== user.id) { 
         res.status(401)
         throw new Error('User not authorized')
     }

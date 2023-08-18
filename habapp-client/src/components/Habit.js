@@ -7,14 +7,31 @@ function Habit() {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
   const [deadline, setDeadline] = useState('');
+  const [habitToUpdate, setHabitToUpdate] = useState(null);
+
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [habitToDelete, setHabitToDelete] = useState(null);
+
+  const updateHabit = (habitId) => {
+    const habitToUpdate = list.find((habit) => habit.id === habitId);
+    if (habitToUpdate) {
+      setName(habitToUpdate.habit);
+      setGoal(habitToUpdate.goal);
+      setDeadline(habitToUpdate.deadline);
+      setHabitToUpdate(habitToUpdate);
+    }
+  };
+
 
   const addHabit = () => {
-    // Check if all required fields are filled
+    
     if (!name || !goal || !deadline) {
       alert('Please fill out all required fields.');
       return;
     }
 
+  
     const newHabit = {
       id: Math.random(),
       habit: name,
@@ -22,10 +39,10 @@ function Habit() {
       deadline: deadline,
     };
 
-    // Add the Habit to the list
+    
     setList([...list, newHabit]);
 
-    // Clear input boxes
+    
     setName('');
     setGoal('');
     setDeadline('');
@@ -34,7 +51,30 @@ function Habit() {
   const deleteHabit = (habitId) => {
     const updatedList = list.filter((habit) => habit.id !== habitId);
     setList(updatedList);
+    
+    setIsDialogOpen(true);
+    setHabitToDelete(habitId);
+    
+
   };
+
+  
+  const confirmDelete = () => {
+    
+    setIsDialogOpen(false);
+
+    
+    const updatedList = list.filter((habit) => habit.id !== habitToDelete);
+    setList(updatedList);
+  };
+
+  const cancelDelete = () => {
+    
+    setIsDialogOpen(false);
+    setHabitToDelete(null);
+  };
+
+  
 
   return (
     <div>
@@ -86,9 +126,21 @@ function Habit() {
             <button className="deleteButton" onClick={() => deleteHabit(habit.id)}>
               Delete
             </button>
+            <button className="updateButton" onClick={() => updateHabit(habit.id)}>
+              Update
+            </button>
           </li>
         ))}
       </ul>
+
+      {isDialogOpen && (
+        <div className="dialog">
+          <p>Do you want to delete this habit?</p>
+          <button onClick={confirmDelete}>Delete</button>
+          <button onClick={cancelDelete}>Cancel</button>
+        </div>
+      )}
+
     </div>
   );
 }

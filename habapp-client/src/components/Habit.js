@@ -7,7 +7,8 @@ function Habit() {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
   const [deadline, setDeadline] = useState('');
-  const [habitToUpdate, setHabitToUpdate] = useState(null);
+
+  
 
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -19,7 +20,7 @@ function Habit() {
       setName(habitToUpdate.habit);
       setGoal(habitToUpdate.goal);
       setDeadline(habitToUpdate.deadline);
-      setHabitToUpdate(habitToUpdate);
+      
     }
   };
 
@@ -49,23 +50,18 @@ function Habit() {
   };
 
   const deleteHabit = (habitId) => {
-    const updatedList = list.filter((habit) => habit.id !== habitId);
-    setList(updatedList);
-    
     setIsDialogOpen(true);
     setHabitToDelete(habitId);
-    
-
   };
 
-  
   const confirmDelete = () => {
-    
     setIsDialogOpen(false);
 
-    
-    const updatedList = list.filter((habit) => habit.id !== habitToDelete);
-    setList(updatedList);
+    if (habitToDelete !== null) {
+      const updatedList = list.filter((habit) => habit.id !== habitToDelete);
+      setList(updatedList);
+      setHabitToDelete(null);
+    }
   };
 
   const cancelDelete = () => {
@@ -77,7 +73,7 @@ function Habit() {
   
 
   return (
-    <div>
+    <div className={`page-wrapper ${isDialogOpen ? 'blur-background' : ''}`}>
       <h2 className="container">Create a Habit</h2>
 
     <div className="container">    
@@ -127,18 +123,21 @@ function Habit() {
               Delete
             </button>
             <button className="updateButton" onClick={() => updateHabit(habit.id)}>
-              Update
+              Update habit
             </button>
           </li>
         ))}
       </ul>
 
       {isDialogOpen && (
+        
         <div className="dialog">
-          <p>Do you want to delete this habit?</p>
-          <button onClick={confirmDelete}>Delete</button>
-          <button onClick={cancelDelete}>Cancel</button>
+        <p className="dialog-text">Do you want to delete this habit?</p>
+        <div className="button-container">
+          <button className="cancel-button" onClick={cancelDelete}>Cancel</button>
+          <button className="delete-button" onClick={confirmDelete}>Delete</button>
         </div>
+      </div>
       )}
 
     </div>

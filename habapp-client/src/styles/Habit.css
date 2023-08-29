@@ -2,75 +2,154 @@
 
 
 .container {
-    display: grid;
-    gap: 10px; 
-    grid-template-columns: 1fr; 
-    padding-left: 30px;
-  }
-  
- 
-  label {
-    font-weight: bold;
-  }
-  
- 
-  input[type="text"],
-  input[type="date"] {
-    padding: 8px;
-    width: 90%;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
+  display: grid;
+  gap: 10px; 
+  grid-template-columns: 1fr; 
+  padding-left: 30px;
+}
 
-  .buttonStyle {
-    margin-left: auto; 
-    padding: 6px 12px; 
-    font-size: 14px; 
-    background-color: #727272; 
-    color: #fff; 
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 20px;
-    
-    
-  }
+
+label {
+  font-weight: bold;
+}
+
+
+input[type="text"],
+input[type="date"] {
+  padding: 8px;
+  width: 90%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.buttonStyle {
+  margin-left: auto; 
+  padding: 6px 12px; 
+  font-size: 14px; 
+  background-color: #727272; 
+  color: #fff; 
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 20px;
+  
+  
+}
 
 
 ul {
-  list-style: none;
-  padding-left: 30px;
-  padding-right: 30px;
+list-style: none;
+padding-left: 30px;
+padding-right: 30px;
 }
 
 
 ul li {
-  background-color: #9d9d9d;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px 0;
-  position: relative; 
+background-color: #9d9d9d;
+border-radius: 5px;
+padding: 10px;
+margin: 10px 0;
+position: relative; 
 }
 
 
 .habit-details {
-  display: flex;
-  flex-direction: column; 
+display: flex;
+flex-direction: column; 
 }
 
 
 .habit-detail {
-  margin-bottom: 5px; 
+margin-bottom: 5px; 
 }
 
 
 .deleteButton {
-  background-color: #e57373;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  padding: 5px 10px;
-  cursor: pointer;
-  position: absolute;
-  top: 5px;
-  right: 5px;
+background-color: #e57373;
+border: none;
+border-radius: 5px;
+color: white;
+padding: 5px 27px;
+cursor: pointer;
+position: absolute;
+top: 5px;
+right: 5px;
+}
+
+.updateButton {
+background-color: #72dd64;
+border: none;
+border-radius: 5px;
+color: white;
+padding: 5px 8px;
+cursor: pointer;
+position: absolute;
+top: 40px;
+right: 5px;
+}
+
+
+.dialog {
+display: flex;
+flex-direction: column;
+align-items: center;
+border: 2px solid black;
+padding: 20px;
+max-width: 300px;
+margin: 0 auto;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+background-color: white;
+border-radius: 25px;
+}
+
+.dialog-text {
+font-size: 18px;
+margin-bottom: 20px;
+}
+
+.button-container {
+display: flex;
+justify-content: space-between;
+width: 100%;
+}
+
+.cancel-button, .delete-button {
+border: 2px solid black;
+padding: 10px 20px;
+cursor: pointer;
+}
+
+.cancel-button {
+background-color: #6c6c6c;
+color: rgb(255, 255, 255);
+border-radius: 10px;
+}
+
+.delete-button {
+background-color: #6c6c6c;
+color: rgb(255, 248, 248);
+border-radius: 10px;
+}
+
+.page-wrapper {
+position: relative;
+}
+
+.blur-background {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+backdrop-filter: blur(5px);
+background-color: rgba(0, 0, 0, 0.5);
+z-index: 1; 
+}
+
+.blur-background * {
+filter: blur(5px);
+}
+
+.blur-background .dialog,
+.blur-background .dialog * {
+filter: none;
 }

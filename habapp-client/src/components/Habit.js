@@ -8,13 +8,61 @@ function Habit() {
   const [goal, setGoal] = useState('');
   const [deadline, setDeadline] = useState('');
 
+  
+
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [habitToDelete, setHabitToDelete] = useState(null);
+
+  const [editingIndex, setEditingIndex] = useState(-1);
+
+  const updateHabit = (habitId) => {
+    const habitToUpdate = list.find((habit) => habit.id === habitId);
+    if (habitToUpdate) {
+      setName(habitToUpdate.habit);
+      setGoal(habitToUpdate.goal);
+      setDeadline(habitToUpdate.deadline);
+      setEditingIndex(list.findIndex((habit) => habit.id === habitId));
+    } else {
+      setEditingIndex(-1); 
+    }
+  };
+  
+
+  const updateExistingHabit = () => {
+    if (!name || !goal || !deadline) {
+      alert('Please fill out all required fields.');
+      return;
+    }
+  
+    const updatedHabit = {
+      id: list[editingIndex].id, 
+      habit: name,
+      goal: goal,
+      deadline: deadline,
+    };
+  
+    const updatedList = [...list];
+    updatedList[editingIndex] = updatedHabit;
+    setList(updatedList);
+  
+    setName('');
+    setGoal('');
+    setDeadline('');
+    setEditingIndex(-1); 
+  };
+  
+  
+
+
   const addHabit = () => {
-    // Check if all required fields are filled
+    
     if (!name || !goal || !deadline) {
       alert('Please fill out all required fields.');
       return;
     }
 
+  
     const newHabit = {
       id: Math.random(),
       habit: name,
@@ -22,22 +70,40 @@ function Habit() {
       deadline: deadline,
     };
 
-    // Add the Habit to the list
+    
     setList([...list, newHabit]);
 
-    // Clear input boxes
+    
     setName('');
     setGoal('');
     setDeadline('');
   };
 
   const deleteHabit = (habitId) => {
-    const updatedList = list.filter((habit) => habit.id !== habitId);
-    setList(updatedList);
+    setIsDialogOpen(true);
+    setHabitToDelete(habitId);
   };
 
+  const confirmDelete = () => {
+    setIsDialogOpen(false);
+
+    if (habitToDelete !== null) {
+      const updatedList = list.filter((habit) => habit.id !== habitToDelete);
+      setList(updatedList);
+      setHabitToDelete(null);
+    }
+  };
+
+  const cancelDelete = () => {
+    
+    setIsDialogOpen(false);
+    setHabitToDelete(null);
+  };
+
+  
+
   return (
-    <div>
+    <div className={`page-wrapper ${isDialogOpen ? 'blur-background' : ''}`}>
       <h2 className="container">Create a Habit</h2>
 
     <div className="container">    
@@ -70,7 +136,9 @@ function Habit() {
         required 
       />
 
-      <button className="buttonStyle" onClick={addHabit}>Submit Habit</button>
+      <button className="buttonStyle" onClick={editingIndex === -1 ? addHabit : updateExistingHabit}>
+        {editingIndex === -1 ? 'Submit Habit' : 'Update Habit'}
+      </button>
     </div>
 
       <ul>
@@ -86,9 +154,24 @@ function Habit() {
             <button className="deleteButton" onClick={() => deleteHabit(habit.id)}>
               Delete
             </button>
+            <button className="updateButton" onClick={() => updateHabit(habit.id)}>
+              Update habit
+            </button>
           </li>
         ))}
       </ul>
+
+      {isDialogOpen && (
+        
+        <div className="dialog">
+        <p className="dialog-text">Do you want to delete this habit?</p>
+        <div className="button-container">
+          <button className="cancel-button" onClick={cancelDelete}>Cancel</button>
+          <button className="delete-button" onClick={confirmDelete}>Delete</button>
+        </div>
+      </div>
+      )}
+
     </div>
   );
 }

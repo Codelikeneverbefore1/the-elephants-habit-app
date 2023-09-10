@@ -1,14 +1,14 @@
 import {useState, useEffect} from 'react'
 import {FaSignInAlt} from 'react-icons/fa'
-import {useSelector, useDispatch} from 'react-redux'        //useSelector used for state(user, isLoading, isError) , useDispatch used for functions i.e. <register />
+import {useSelector, useDispatch} from 'react-redux'        
 import {useNavigate} from 'react-router-dom'
-import {toast} from 'react-toastify'                        //
+import {toast} from 'react-toastify'                        
 import {login, reset} from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
 
-function Login() { //<--create with rfce + enter
+function Login() { 
     
-    const [formData, setFormData] = useState({  //state for Form
+    const [formData, setFormData] = useState({  
         name: '',
         email: '',
         password: ''
@@ -19,7 +19,7 @@ function Login() { //<--create with rfce + enter
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const {user, isLoading, isError, isSuccess, message} = useSelector(              // <--select from state
+    const {user, isLoading, isError, isSuccess, message} = useSelector(             
         (state) => state.auth
     )
     
@@ -39,7 +39,7 @@ function Login() { //<--create with rfce + enter
     const onChange = (e) => {
         setFormData((prevState) => ({
             ...prevState,
-            [e.target.name]: e.target.value,        // <-- to target object key called "name"
+            [e.target.name]: e.target.value,        
         }))
     }
 

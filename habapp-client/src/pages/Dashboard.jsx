@@ -1,4 +1,4 @@
-import React from 'react' //<--create with rfce + enter
+import React from 'react' 
 
 function Dashboard() {
   return (

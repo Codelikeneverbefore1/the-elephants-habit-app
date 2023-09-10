@@ -1,14 +1,14 @@
 import {useState, useEffect} from 'react'
-import {useSelector, useDispatch} from 'react-redux'        //useSelector used for state(user, isLoading, isError) , useDispatch used for functions i.e. <register />
+import {useSelector, useDispatch} from 'react-redux'        
 import {useNavigate} from 'react-router-dom'
-import {toast} from 'react-toastify'                        //
+import {toast} from 'react-toastify'                        
 import {FaUser} from 'react-icons/fa'
 import {register, reset} from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
 
-function Register() { //<--create with rfce + enter
+function Register() { 
     
-    const [formData, setFormData] = useState({  //state for Form
+    const [formData, setFormData] = useState({  
         name: '',
         email: '',
         password: '',
@@ -20,7 +20,7 @@ function Register() { //<--create with rfce + enter
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const {user, isLoading, isError, isSuccess, message} = useSelector(              // <--select from state
+    const {user, isLoading, isError, isSuccess, message} = useSelector(              
         (state) => state.auth
     )  
     
@@ -35,12 +35,12 @@ function Register() { //<--create with rfce + enter
 
         dispatch(reset())
 
-    },[user, isError, isSuccess, message, navigate, dispatch])               // <--requirees dependences, put intp dep. array '[]'
+    },[user, isError, isSuccess, message, navigate, dispatch])               
 
     const onChange = (e) => {
         setFormData((prevState) => ({
             ...prevState,
-            [e.target.name]: e.target.value,        // <-- to target object key called "name"
+            [e.target.name]: e.target.value,        
         }))
     }
 

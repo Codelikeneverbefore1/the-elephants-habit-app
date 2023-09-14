@@ -7,28 +7,23 @@ function Habit() {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
   const [deadline, setDeadline] = useState('');
-
-  
-
-
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [habitToDelete, setHabitToDelete] = useState(null);
-
   const [editingIndex, setEditingIndex] = useState(-1);
-
+  
   const updateHabit = (habitId) => {
     const habitToUpdate = list.find((habit) => habit.id === habitId);
     if (habitToUpdate) {
       setName(habitToUpdate.habit);
       setGoal(habitToUpdate.goal);
       setDeadline(habitToUpdate.deadline);
+
       setEditingIndex(list.findIndex((habit) => habit.id === habitId));
     } else {
       setEditingIndex(-1); 
     }
   };
   
-
   const updateExistingHabit = () => {
     if (!name || !goal || !deadline) {
       alert('Please fill out all required fields.');
@@ -51,9 +46,9 @@ function Habit() {
     setDeadline('');
     setEditingIndex(-1); 
   };
-  
-  
-
+     
+    }
+  };
 
   const addHabit = () => {
     
@@ -62,17 +57,14 @@ function Habit() {
       return;
     }
 
-  
     const newHabit = {
       id: Math.random(),
       habit: name,
       goal: goal,
       deadline: deadline,
     };
-
     
     setList([...list, newHabit]);
-
     
     setName('');
     setGoal('');
@@ -82,6 +74,19 @@ function Habit() {
   const deleteHabit = (habitId) => {
     setIsDialogOpen(true);
     setHabitToDelete(habitId);
+
+  };
+
+  const confirmDelete = () => {
+    setIsDialogOpen(false);
+
+    if (habitToDelete !== null) {
+      const updatedList = list.filter((habit) => habit.id !== habitToDelete);
+      setList(updatedList);
+      setHabitToDelete(null);
+    }
+  };
+
   };
 
   const confirmDelete = () => {
@@ -99,8 +104,6 @@ function Habit() {
     setIsDialogOpen(false);
     setHabitToDelete(null);
   };
-
-  
 
   return (
     <div className={`page-wrapper ${isDialogOpen ? 'blur-background' : ''}`}>

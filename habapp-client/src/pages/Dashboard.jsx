@@ -1,8 +1,11 @@
 import React from 'react' 
+import Habit from '../components/Habit'
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div><Habit/></div>
+    
+
   )
 }
 

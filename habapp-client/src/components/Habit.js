@@ -46,9 +46,6 @@ function Habit() {
     setDeadline('');
     setEditingIndex(-1); 
   };
-     
-    }
-  };
 
   const addHabit = () => {
     
@@ -74,18 +71,6 @@ function Habit() {
   const deleteHabit = (habitId) => {
     setIsDialogOpen(true);
     setHabitToDelete(habitId);
-
-  };
-
-  const confirmDelete = () => {
-    setIsDialogOpen(false);
-
-    if (habitToDelete !== null) {
-      const updatedList = list.filter((habit) => habit.id !== habitToDelete);
-      setList(updatedList);
-      setHabitToDelete(null);
-    }
-  };
 
   };
 
@@ -178,5 +163,4 @@ function Habit() {
     </div>
   );
 }
-
 export default Habit;

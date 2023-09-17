@@ -91,6 +91,7 @@ function Habit() {
   };
 
   return (
+
     <div className={`page-wrapper ${isDialogOpen ? 'blur-background' : ''}`}>
       <h2 className="container">Create a Habit</h2>
 
@@ -161,6 +162,7 @@ function Habit() {
       )}
 
     </div>
+
   );
 }
 export default Habit;
